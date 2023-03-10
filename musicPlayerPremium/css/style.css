@@ -19,7 +19,8 @@ li {
 }
 
 body {
-  background: url(./musicPlayerPremium/imgs/imgLogo/Neon-Lo-Fi-Background-HD.jpg);
+
+   background-image: url('./musicPlayerPremium/imgs/imgLogo/Neon-Lo-Fi-Background-HD.jpg');
   background-size: cover;
   width: 100vw;
 }
