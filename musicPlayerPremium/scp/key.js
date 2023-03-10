@@ -26,10 +26,10 @@ const heading = $("header h2"),
   getVolume = $(".volume"),
   volumeNumber = $(".volume-number"),
   timeDuration = $(".time-duration"),
-  imgThumb = "/musicPlayerPremium/imgs/imgthumb",
+  imgThumb = "./musicPlayerPremium/imgs/imgthumb",
   getPrimaryColor = $(".primary-color"),
   autoNextSongBtn = $(".autonext"),
-  linkSong = "/musicPlayerPremium/music";
+  linkSong = "./musicPlayerPremium/music";
 const app = {
   currentIndex: 0,
   isPlaying: false,
