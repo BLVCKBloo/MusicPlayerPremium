@@ -29,7 +29,7 @@ const heading = $("header h2"),
   imgThumb = "./musicPlayerPremium/imgs/imgthumb",
   getPrimaryColor = $(".primary-color"),
   autoNextSongBtn = $(".autonext"),
-  linkSong = "./musicPlayerPremium/music";
+  linkSong = "/musicPlayerPremium/music";
 setTimeout(() => {
   $(".title-show").classList.add("disable");
 }, 4000);
