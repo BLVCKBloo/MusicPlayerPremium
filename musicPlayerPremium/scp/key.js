@@ -30,6 +30,9 @@ const heading = $("header h2"),
   getPrimaryColor = $(".primary-color"),
   autoNextSongBtn = $(".autonext"),
   linkSong = "./musicPlayerPremium/music";
+setTimeout(() => {
+  $(".title-show").classList.add("disable");
+}, 4000);
 const app = {
   currentIndex: 0,
   isPlaying: false,
