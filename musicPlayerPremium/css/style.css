@@ -191,7 +191,7 @@ header h5 {
   }
   100% {
     opacity: 1;
-    left: -400px;
+    left: -300px;
   }
 }
 @keyframes slideToLeft-MB {
