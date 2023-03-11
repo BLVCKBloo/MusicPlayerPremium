@@ -1006,11 +1006,12 @@ header h5 {
     left: -290px;
   }
 }
-@media (min-width: 1200px) and (max-width: 2340px) {
+@media (min-width: 960px) and (max-width: 1340px) {
   .player-list {
-    left: -100px;
+    left: -400px;
   }
 }
+
 @media (min-width: 375px) and (max-width: 667px) {
   .uns {
     display: none;
