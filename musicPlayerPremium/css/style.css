@@ -1006,7 +1006,7 @@ header h5 {
     left: -290px;
   }
 }
-@media (min-width: 960px) and (max-width: 1340px) {
+@media (min-width: 960px) and (max-width: 2340px) {
   .player-list {
     left: -400px;
   }
