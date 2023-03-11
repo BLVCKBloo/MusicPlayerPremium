@@ -146,6 +146,11 @@ header .title-show {
   color: #fff;
   background-color: var(--active-color);
 }
+
+header .title-show.disable {
+  display: none;
+}
+
 header h4 {
   color: var(--primary-color);
   font-size: 12px;
