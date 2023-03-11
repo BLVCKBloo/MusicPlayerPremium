@@ -1,9 +1,7 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 document.body.style.backgroundImage = "url(./musicPlayerPremium/imgs/imgLogo/Neon-Lo-Fi-Background-HD.jpg)";
-setTimeout(() => {
-  $(".title-show").classList.add("disable");
-}, 4000);
+
 const heading = $("header h2"),
   headingSinger = $("header h5"),
   cdThumb = $(".cd-right"),
