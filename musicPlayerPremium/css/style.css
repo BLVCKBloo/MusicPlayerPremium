@@ -140,7 +140,12 @@ header {
   text-align: center;
   margin-top: 15px;
 }
-
+header .title-show {
+  position: relative;
+  margin-top: 50px;
+  color: #fff;
+  background-color: var(--active-color);
+}
 header h4 {
   color: var(--primary-color);
   font-size: 12px;
