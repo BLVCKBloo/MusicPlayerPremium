@@ -534,7 +534,7 @@ header h5 {
 
 .player-list {
   position: absolute;
-  left: 0px;
+  left: -400px;
   width: 30%;
   top: 15px;
   height: 90%;
