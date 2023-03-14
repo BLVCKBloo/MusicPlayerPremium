@@ -19,8 +19,7 @@ li {
 }
 
 body {
-
-   background-image: url('../imgs/imgLogo/Neon-Lo-Fi-Background-HD.jpg');
+  background-image: url(./musicPlayerPremium/imgs/imgLogo/Neon-Lo-Fi-Background-HD.jpg);
   background-size: cover;
   width: 100vw;
 }
@@ -140,16 +139,6 @@ header {
   text-align: center;
   margin-top: 15px;
 }
-header .title-show {
-  position: relative;
-  margin-top: 50px;
-  color: #fff;
-  background-color: var(--active-color);
-}
-
-header .title-show.disable {
-  display: none;
-}
 
 header h4 {
   color: var(--primary-color);
@@ -191,23 +180,10 @@ header h5 {
   }
   100% {
     opacity: 1;
-    left: -300px;
-  }
-}
-@keyframes slideToLeft-MB {
-  0% {
-    opacity: 1;
-    left: 30px;
-  }
-  75% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
     left: -400px;
   }
 }
+
 @keyframes rotate90degRight {
   0% {
     transform: rotate(0deg);
@@ -898,7 +874,6 @@ header h5 {
 }
 
 .colorchange {
-  position: absolute;
   top: 15px;
   right: 15px;
   border-radius: 3px;
@@ -906,7 +881,6 @@ header h5 {
 }
 
 .colorchange-cont {
-  background-color: rgba(255, 255, 255, 0.2);
   margin: 5px 0;
   max-width: 140px;
   display: flex;
@@ -914,12 +888,21 @@ header h5 {
   flex-wrap: wrap;
 }
 
-.colorchange-cont-btn {
+.colorchange-cont input {
+  display: none;
+}
+
+.colorchange-cont input[type="radio"]:checked + label {
+  border: 2px solid var(--active-color);
+  opacity: 1;
+}
+
+.colorchange-cont label {
+  opacity: 0.6;
   margin: 2px 2px;
-  width: 23px;
-  height: 23px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background-color: blue;
 }
 
 .autonext {
@@ -988,37 +971,154 @@ header h5 {
     display: none;
   }
 }
-@media (min-width: 720px) and (max-width: 960px) {
-  .player-list {
-    left: -300px;
-  }
-  .player-list.hide {
-    animation: slideToLeft-MB 0.3s ease;
-  }
-}
-@media (min-width: 961px) and (max-width: 1080px) {
-  .player-list {
-    left: -300px;
-  }
-}
-@media (min-width: 1081px) and (max-width: 1200px) {
-  .player-list {
-    left: -290px;
-  }
-}
-@media (min-width: 1201px) and (max-width: 1380px) {
-  .player-list {
-    left: -400px;
-  }
+
+.user {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  display: flex;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
 }
 
-@media (min-width: 375px) and (max-width: 667px) {
-  .uns {
-    display: none;
-  }
-  .player-list {
-    left: -100px;
-  }
+.user-left {
+  text-align: end;
+  margin-right: 10px;
 }
 
+.user-left-name {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.user-left-content {
+  color: #eee;
+  font-size: 10px;
+}
+
+.user-icon {
+  border: 2px solid var(--active-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-image: url(/musicPlayerPremium/imgs/imgLogo/chericheri.jpg);
+  background-size: cover;
+  transition: transform 0.1s ease-in;
+}
+
+.user-icon:hover {
+  animation: shortrotate 0.4s ease;
+}
+
+.user-icon.active {
+  transform: rotate(30deg);
+}
+
+.user-icon.active ~ .user-setting {
+  display: block;
+}
+
+.user-icon.active:hover {
+  animation: none;
+}
+
+.user:hover {
+  opacity: 1;
+}
+
+.user.active {
+  opacity: 1;
+}
+
+.user-setting {
+  display: none;
+  position: absolute;
+  transform: translateY(100px);
+  width: 190px;
+  right: 0;
+}
+
+.user-setting span {
+  font-size: 12px;
+}
+
+.user-setting-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.user-setting-profile input {
+  margin-left: 5px;
+  width: 120px;
+  padding: 3px 5px;
+  background-color: transparent;
+  color: #eee;
+  outline: none;
+  border: none;
+  color: var(--primary-color);
+}
+
+.user-setting-profile input::placeholder {
+  color: #eee;
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.user-setting-icon p {
+  margin-bottom: 10px;
+}
+
+.user-setting-icon .icon-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-setting-icon .icon-container input[type="radio"]:checked + label {
+  border: 2px solid var(--primary-color);
+}
+
+.user-setting-icon .icon-container .set-icon {
+  background-size: cover;
+  border-radius: 50%;
+  height: 41px;
+  width: 41px;
+  border: 2px solid var(--active-color);
+  margin: 3px;
+}
+
+.user-setting-icon .icon-container .set-icon:checked {
+  border: 2px solid var(--primary-color);
+}
+
+.user-setting-save {
+  border: none;
+  outline: none;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  margin-top: 10px;
+}
+
+@keyframes shortrotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(30deg);
+  }
+  70% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 /*# sourceMappingURL=style.css.map */
