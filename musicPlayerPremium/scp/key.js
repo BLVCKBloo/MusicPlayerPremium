@@ -1,7 +1,6 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-document.body.style.backgroundImage = "url(./musicPlayerPremium/imgs/imgLogo/Neon-Lo-Fi-Background-HD.jpg)";
-
+const root = document.querySelector(":root");
 const heading = $("header h2"),
   headingSinger = $("header h5"),
   cdThumb = $(".cd-right"),
@@ -30,8 +29,11 @@ const heading = $("header h2"),
   imgThumb = "./musicPlayerPremium/imgs/imgthumb",
   getPrimaryColor = $(".primary-color"),
   autoNextSongBtn = $(".autonext"),
-  linkSong = "/musicPlayerPremium/music";
- 
+  linkSong = "./musicPlayerPremium/music",
+  getIconUser = $(".user-icon"),
+  userSetting = $(".user-setting"),
+  getUser = $(".user");
+
 const app = {
   currentIndex: 0,
   isPlaying: false,
@@ -40,6 +42,7 @@ const app = {
   isListShow: false,
   isNextSong: undefined,
   isOpenOption: false,
+  iconActive: false,
   isAutoNextSong: true,
   colors: [
     {
@@ -60,28 +63,60 @@ const app = {
   ],
   favLists: [],
   delList: [],
+  icons: [
+    {
+      icon: "./musicPlayerPremium/imgs/imgProfile/meo.png",
+    },
+    {
+      icon: "./musicPlayerPremium/imgs/imgProfile/meo2.png",
+    },
+    {
+      icon: "./musicPlayerPremium/imgs/imgProfile/meo3.jfif",
+    },
+    {
+      icon: "./musicPlayerPremium/imgs/imgProfile/meo4.jpg",
+    },
+    {
+      icon: "./musicPlayerPremium/imgs/imgProfile/meo5.jpg",
+    },
+    {
+      icon: "./musicPlayerPremium/imgs/imgProfile/meo6.jpg",
+    },
+    {
+      icon: "./musicPlayerPremium/imgs/imgProfile/meo7.jpg",
+    },
+  ],
+  settings: [
+    {
+      name: "Khô Một Nắng",
+      content: "Hello World",
+      icon: "./musicPlayerPremium/imgs/imgProfile/meo.png",
+      iconIndex: 0,
+      color: "#20e3b2",
+    },
+  ],
   songs: [
     {
       name: "Waiting For You",
       singer: "MONO",
-      path: `./musicPlayerPremium/music/waitingforyou.mp3`,
-      image: `./musicPlayerPremium/imgs/imgthumb/waitingforyou.jpg`,
+      path: `${linkSong}/waitingforyou.mp3`,
+      image: `${imgThumb}/waitingforyou.jpg`,
       favorite: false,
       disableSong: false,
     },
     {
       name: "Chuyện Đôi Ta",
       singer: "Emcee L (Da LAB) ft Muộii ",
-      path: `./musicPlayerPremium/music/chuyendoita.mp3`,
-      image: `./musicPlayerPremium/imgs/imgthumb/chuyendoita.jpg`,
+      path: `${linkSong}/chuyendoita.mp3`,
+      image: `${imgThumb}/chuyendoita.jpg`,
       favorite: false,
       disableSong: false,
     },
     {
       name: "Đèo Bòng",
       singer: "KEYO",
-      path: `./musicPlayerPremium/music/deobong.mp3`,
-      image: `./musicPlayerPremium/imgs/imgthumb/deobong.jpg`,
+      path: `${linkSong}/deobong.mp3`,
+      image: `${imgThumb}/deobong.jpg`,
       favorite: false,
       disableSong: false,
     },
@@ -89,51 +124,75 @@ const app = {
     {
       name: "Mặt Mộc",
       singer: "Phạm Nguyên Ngọc x VAnh x Ân Nhi",
-      path: `./musicPlayerPremium/music/matmoc.mp3`,
-      image: `./musicPlayerPremium/imgs/imgthumb/matmoc.jpg`,
+      path: `${linkSong}/matmoc.mp3`,
+      image: `${imgThumb}/matmoc.jpg`,
       favorite: false,
       disableSong: false,
     },
     {
       name: "Phải Lòng",
       singer: "Tăng Duy Tân ft. Phong Max",
-      path: `./musicPlayerPremium/music/phailong.mp3`,
-      image: `./musicPlayerPremium/imgs/imgthumb/phailong.jpg`,
+      path: `${linkSong}/phailong.mp3`,
+      image: `${imgThumb}/phailong.jpg`,
       favorite: false,
       disableSong: false,
     },
     {
       name: "Thức Giấc",
       singer: "Da Lab",
-      path: `./musicPlayerPremium/music/thucgiac.mp3`,
-      image: `./musicPlayerPremium/imgs/imgthumb/thucgiac.jpg`,
+      path: `${linkSong}/thucgiac.mp3`,
+      image: `${imgThumb}/thucgiac.jpg`,
       favorite: false,
       disableSong: false,
     },
     {
       name: "Xuất Giá",
       singer: "KEYO",
-      path: `./musicPlayerPremium/music/xuatgia.mp3`,
-      image: `./musicPlayerPremium/imgs/imgthumb/xuatgia.jfif`,
+      path: `${linkSong}/xuatgia.mp3`,
+      image: `${imgThumb}/xuatgia.jfif`,
       favorite: false,
       disableSong: false,
     },
     {
       name: "Thanh Xuân",
       singer: "Da Lab",
-      path: `./musicPlayerPremium/music/thanhxuan.mp3`,
-      image: `./musicPlayerPremium/imgs/imgthumb/thanhxuan.jpg`,
+      path: `${linkSong}/thanhxuan.mp3`,
+      image: `${imgThumb}/thanhxuan.jpg`,
       favorite: false,
       disableSong: false,
     },
   ],
   render: function () {
+    this.settings.map((setting, index) => {
+      $(".user-left-name").innerText = setting.name;
+      $(".user-left-content").innerText = setting.content;
+      $(".user-icon").style.backgroundImage = `url(${setting.icon})`;
+      root.style.setProperty("--primary-color", `${setting.color}`);
+    });
     $(".tabs-span").innerText = `${this.currentIndex + 1}/${this.songs.length}`;
     const renderColor = this.colors.map((cl, index) => {
       return `
-      <div class="colorchange-cont-btn" style="background: ${cl.color};"></div>`;
+          <input type="radio" name="primary-colorr" data-index="${index}" id="color${index}" ${
+        index == 2 ? "checked" : ""
+      } />
+          <label
+            for="color${index}"
+            class="colorchange-cont-btn"
+            style="background-color: ${cl.color}"
+          ></label>`;
     });
+    const iconRender = this.icons.map((icn, index) => {
+      return `
+  <input class="set-input" style="display: none"  data-index="${index}" type="radio" name="user-icon" id="index${index}" ${
+        index == 0 ? "checked" : ""
+      }>
+  <label for="index${index}" style="background-image: url(${
+        icn.icon
+      });" class="set-icon">
 
+</label>
+`;
+    });
     const htmls = this.songs.map((song, index) => {
       return `
     <div class="song  ${
@@ -163,7 +222,7 @@ const app = {
       <i class="fas fa-ellipsis-h"></i>
       <ul class="option-list">
       <li  class="option-list-btn dellist delete-btn">Xóa</li>
-      <li class="option-list-btn  nextsong-btn">${
+      <li  class="option-list-btn  nextsong-btn">${
         index != this.isNextSong ? "Phát tiếp theo" : "Hủy phát tiếp theo"
       }</li>
       <li class="option-list-btn ${song.favorite ? "active" : "favsong-btn"}">${
@@ -253,9 +312,9 @@ const app = {
       </div>
         `;
     });
-
+    $(".icon-container").innerHTML = iconRender.join("");
     $(".primary-color").innerHTML = renderColor.join("");
-    $(".secondary-color").innerHTML = renderColor.join("");
+
     $("#playlists").innerHTML = htmls.join("");
     $("#favlist").innerHTML = favhtml.join("");
     $("#dellist").innerHTML = delhtml.join("");
@@ -269,7 +328,9 @@ const app = {
   },
   handleEvent: function () {
     this.render();
+    // const setIcon = $$(".set-icon");
     const _this = this;
+
     cdWidth = cd.offsetWidth;
     const getSong = $$(".song");
     const cdThumbAnimated = cdThumb.animate([{ transform: "rotate(360deg)" }], {
@@ -314,6 +375,16 @@ const app = {
         getVolume.classList.remove("off", "weak", "medium", "strong");
       };
     });
+    // ----------------------------------
+    getIconUser.onclick = (e) => {
+      const userSetting = $(".user-setting");
+
+      _this.iconActive = !_this.iconActive;
+      getIconUser.classList.toggle("active", _this.iconActive);
+      getUser.classList.toggle("active", _this.iconActive);
+    };
+
+    // ------------------------------=-=-=-=-=-=-=-=
     audio.ontimeupdate = function () {
       if (audio.duration) {
         const currentProgress = Math.floor(
@@ -375,6 +446,7 @@ const app = {
       }
       audio.volume = seekVolume;
     };
+
     progress.oninput = function (e) {
       const seekTime = (audio.duration / 100) * e.target.value;
       let current_minutes = Math.floor(seekTime / 60);
@@ -401,7 +473,39 @@ const app = {
         }, 400);
       }, 700);
     };
-
+    // -----------------------------------------=-=-=-=-=-=-=-=
+    $(".user-setting-save").onclick = (e) => {
+      var iconCont = $(".icon-container");
+      var colorCont = $(".colorchange-cont");
+      const setIcon = iconCont.querySelector('input[type="radio"]:checked');
+      const setColor = colorCont.querySelector('input[type="radio"]:checked');
+      _this.colors.map((clo, inx) => {
+        _this.settings.map((setting, index) => {
+          if (inx == setColor.dataset.index) {
+            setting.color = clo.color;
+          }
+        });
+      });
+      _this.icons.map((icn, inx) => {
+        if (inx == setIcon.dataset.index) {
+          _this.settings.map((setting, index) => {
+            setting.name =
+              $(".input-name").value.length > 0
+                ? $(".input-name").value
+                : setting.name;
+            setting.content =
+              $(".input-content").value.length > 0
+                ? $(".input-content").value
+                : setting.content;
+            setting.icon = icn.icon;
+            setting.iconIndex = inx;
+          });
+        }
+      });
+      console.log(_this.settings);
+      $(".user-icon").classList.remove("active");
+      _this.render();
+    };
     prevBtn.onclick = function () {
       audio.pause();
       setTimeout(() => {
@@ -453,6 +557,7 @@ const app = {
       _this.isAutoNextSong
         ? (getNextSongSpan.innerText = "Tự động chuyển bài: Bật")
         : (getNextSongSpan.innerText = "Tự động chuyển bài: Tắt");
+      _this.render();
     };
 
     listBtn.onclick = function () {
