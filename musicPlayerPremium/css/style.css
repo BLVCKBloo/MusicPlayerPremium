@@ -9,13 +9,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: orange;
   font-size: 15px;
   background-color: #eee;
   border-radius: 10px;
-}
-.alert-span.disable {
-  display: none;
 }
 * {
   padding: 0;
