@@ -89,7 +89,7 @@ const app = {
   settings: [
     {
       name: "Khô Một Nắng",
-      content: "Hello World",
+      content: "Bấm vào ảnh đại diện để Setting",
       icon: "./musicPlayerPremium/imgs/imgProfile/meo.png",
       iconIndex: 0,
       color: "#20e3b2",
