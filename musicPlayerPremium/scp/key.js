@@ -145,6 +145,14 @@ const app = {
       favorite: false,
       disableSong: false,
     },
+{
+      name: "Sắc Ngọc Ngà",
+      singer: "Hữu Trí",
+      path: `${linkSong}/sacngocnga.mp3`,
+      image: `${imgThumb}/sacngocnga.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
     {
       name: "Xuất Giá",
       singer: "KEYO",
