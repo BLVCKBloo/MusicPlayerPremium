@@ -1,6 +1,7 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const root = document.querySelector(":root");
+
 const heading = $("header h2"),
   headingSinger = $("header h5"),
   cdThumb = $(".cd-right"),
@@ -39,7 +40,7 @@ const app = {
   isPlaying: false,
   isRandom: false,
   isRepeat: false,
-  isListShow: false,
+  isListShow: true,
   isNextSong: undefined,
   isOpenOption: false,
   iconActive: false,
@@ -89,10 +90,10 @@ const app = {
   settings: [
     {
       name: "Khô Một Nắng",
-      content: "Nhấn vào ảnh đại diện để cài đặt.",
+      content: "Nhấp vào ảnh đại diện để cài đặt",
       icon: "./musicPlayerPremium/imgs/imgProfile/meo.png",
       iconIndex: 0,
-      color: "#20e3b2",
+      color: "#2cccff",
     },
   ],
   songs: [
@@ -113,6 +114,30 @@ const app = {
       disableSong: false,
     },
     {
+      name: "Cứu Vãn Kịp Không",
+      singer: "Vương Anh Tú",
+      path: `${linkSong}/cuuvankipkhong.mp3`,
+      image: `${imgThumb}/cuuvankipkhong.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
+    {
+      name: "Thủy Chung",
+      singer: "Thương Võ",
+      path: `${linkSong}/thuychung.mp3`,
+      image: `${imgThumb}/thuychung.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
+    {
+      name: "Quả Phụ Tướng",
+      singer: "DUNGHOANGPHAM",
+      path: `${linkSong}/quaphutuong.mp3`,
+      image: `${imgThumb}/quaphutuong.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
+    {
       name: "Đèo Bòng",
       singer: "KEYO",
       path: `${linkSong}/deobong.mp3`,
@@ -121,10 +146,10 @@ const app = {
       disableSong: false,
     },
     {
-      name: "Có Không Giữ Mất Đừng Tìm",
-      singer: "Trúc Nhân",
-      path: `${linkSong}/cokhonggiu.mp3`,
-      image: `${imgThumb}/cokhonggiu.jpg`,
+      name: "Trái Tim Mồ Côi",
+      singer: " Phát Hồ FT. Kiều Trang",
+      path: `${linkSong}/traitimmocoi.mp3`,
+      image: `${imgThumb}/traitimmocoi.jfif`,
       favorite: false,
       disableSong: false,
     },
@@ -133,6 +158,14 @@ const app = {
       singer: "Phạm Nguyên Ngọc x VAnh x Ân Nhi",
       path: `${linkSong}/matmoc.mp3`,
       image: `${imgThumb}/matmoc.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
+    {
+      name: "Có Không Giữ Mất Đừng Tìm",
+      singer: "Trúc Nhân",
+      path: `${linkSong}/cokhonggiumatdungtim.mp3`,
+      image: `${imgThumb}/cokhonggiumatdungtim.jpg`,
       favorite: false,
       disableSong: false,
     },
@@ -153,14 +186,6 @@ const app = {
       disableSong: false,
     },
     {
-      name: "Sắc Ngọc Ngà",
-      singer: "Hữu Trí",
-      path: `${linkSong}/sacngocnga.mp3`,
-      image: `${imgThumb}/sacngocnga.jpg`,
-      favorite: false,
-      disableSong: false,
-    },
-    {
       name: "Xuất Giá",
       singer: "KEYO",
       path: `${linkSong}/xuatgia.mp3`,
@@ -168,11 +193,27 @@ const app = {
       favorite: false,
       disableSong: false,
     },
-{
-      name: "Quả Phụ Tướng",
-      singer: "DUNGHOANGPHAM",
-      path: `${linkSong}/quaphutuong.mp3`,
-      image: `${imgThumb}/quaphutuong.jpg`,
+    {
+      name: "Anh Đếch Cần Điều Gì Từ Em",
+      singer: "Thỏ Bảy Màu (Parody)",
+      path: `${linkSong}/anhdechcandieugiparody.mp3`,
+      image: `${imgThumb}/anhdechcandieugiparody.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
+    {
+      name: "Lối Nhỏ",
+      singer: "Đen Vâu ft Phương Anh Đào",
+      path: `${linkSong}/loinho.mp3`,
+      image: `${imgThumb}/loinho.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
+    {
+      name: "Đâu Ai Dám Hứa",
+      singer: "CZEE",
+      path: `${linkSong}/dauaidamhua.mp3`,
+      image: `${imgThumb}/dauaidamhua.jpg`,
       favorite: false,
       disableSong: false,
     },
@@ -196,7 +237,7 @@ const app = {
     const renderColor = this.colors.map((cl, index) => {
       return `
           <input type="radio" name="primary-colorr" data-index="${index}" id="color${index}" ${
-        index == 2 ? "checked" : ""
+        index == 0 ? "checked" : ""
       } />
           <label
             for="color${index}"
@@ -218,9 +259,9 @@ const app = {
     });
     const htmls = this.songs.map((song, index) => {
       return `
-    <div class="song  ${
-      index === this.currentIndex ? "active" : ""
-    }" data-index="${index}">
+    <div class="song ${song.name.length >= 20 ? "scrolltext" : ""}  ${
+        index === this.currentIndex ? "active" : ""
+      }" data-index="${index}">
     <div class="loader">
     <span></span>
     <span></span>
@@ -241,6 +282,9 @@ const app = {
         index === this.isNextSong ? "active" : ""
       }">Phát tiếp theo</span>
     </div>
+<div class="${song.favorite ? "active" : ""} favorite-song ${
+        song.favorite ? "" : "favsong-btnn"
+      }"><ion-icon class="nonfav-icon" name="heart-outline"></ion-icon><ion-icon class="fav-icon" name="heart"></ion-icon></div>
     <div class="option">
       <i class="fas fa-ellipsis-h"></i>
       <ul class="option-list">
@@ -351,6 +395,13 @@ const app = {
   },
   handleEvent: function () {
     this.render();
+    // const tittle = $$(".title");
+    // tittle.forEach((btn, inx) => {
+    //   console.log(btn.innerText.length);
+    //   // if (inx == 11) {
+    //   //   console.log(btn.clientWidth);
+    //   // }
+    // });
     // const setIcon = $$(".set-icon");
     const _this = this;
 
@@ -629,8 +680,9 @@ const app = {
       };
       const songNode = e.target.closest(".song:not(.active)");
       var option = e.target.closest(".option");
-      if (songNode || option) {
-        if (songNode && !option) {
+      var favSong = e.target.closest(".favorite-song");
+      if (songNode || option || favSong) {
+        if (songNode && !option && !favSong) {
           if (songNode.dataset.index == _this.isNextSong) {
             _this.isNextSong = undefined;
           } else {
@@ -644,6 +696,32 @@ const app = {
               }, 500);
             }, 1000);
           }
+        }
+        if (favSong) {
+          const favBtn = $$(".favsong-btnn");
+          favBtn.forEach((btn, inx) => {
+            btn.onclick = (e) => {
+              _this.songs.map((song, index) => {
+                if (inx == index) {
+                  song.favorite = true;
+                  return _this.favLists.push({
+                    name: song.name,
+                    singer: song.singer,
+                    path: song.path,
+                    image: song.image,
+                    lastIndex: index,
+                    favorite: true,
+                  });
+                }
+              });
+              _this.render();
+            };
+          });
+          // favSong.onclick = (e) => {
+          //   _this.songs.map((song, index) => {
+          //     console.log(song, index);
+          //   });
+          // };
         }
         if (option) {
           const getDeleteBtn = $$(".delete-btn");
