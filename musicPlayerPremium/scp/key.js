@@ -120,7 +120,14 @@ const app = {
       favorite: false,
       disableSong: false,
     },
-
+    {
+      name: "Có Không Giữ Mất Đừng Tìm",
+      singer: "Trúc Nhân",
+      path: `${linkSong}/cokhonggiu.mp3`,
+      image: `${imgThumb}/cokhonggiu.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
     {
       name: "Mặt Mộc",
       singer: "Phạm Nguyên Ngọc x VAnh x Ân Nhi",
@@ -145,7 +152,7 @@ const app = {
       favorite: false,
       disableSong: false,
     },
-{
+    {
       name: "Sắc Ngọc Ngà",
       singer: "Hữu Trí",
       path: `${linkSong}/sacngocnga.mp3`,
