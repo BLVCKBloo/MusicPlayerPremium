@@ -153,6 +153,14 @@ const app = {
       favorite: false,
       disableSong: false,
     },
+{
+      name: "Quả Phụ Tướng",
+      singer: "DUNGHOANGPHAM",
+      path: `${linkSong}/quaphutuong.mp3`,
+      image: `${imgThumb}/quaphutuong.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
     {
       name: "Thanh Xuân",
       singer: "Da Lab",
