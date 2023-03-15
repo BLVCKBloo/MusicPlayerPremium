@@ -27,10 +27,10 @@ const heading = $("header h2"),
   getVolume = $(".volume"),
   volumeNumber = $(".volume-number"),
   timeDuration = $(".time-duration"),
-  imgThumb = "./musicPlayerPremium/imgs/imgthumb",
+  imgThumb = "/musicPlayerPremium/imgs/imgthumb",
   getPrimaryColor = $(".primary-color"),
   autoNextSongBtn = $(".autonext"),
-  linkSong = "./musicPlayerPremium/music",
+  linkSong = "/musicPlayerPremium/music",
   getIconUser = $(".user-icon"),
   userSetting = $(".user-setting"),
   getUser = $(".user");
@@ -66,32 +66,32 @@ const app = {
   delList: [],
   icons: [
     {
-      icon: "./musicPlayerPremium/imgs/imgProfile/meo.png",
+      icon: "/musicPlayerPremium/imgs/imgProfile/meo.png",
     },
     {
-      icon: "./musicPlayerPremium/imgs/imgProfile/meo2.png",
+      icon: "/musicPlayerPremium/imgs/imgProfile/meo2.png",
     },
     {
-      icon: "./musicPlayerPremium/imgs/imgProfile/meo3.jfif",
+      icon: "/musicPlayerPremium/imgs/imgProfile/meo3.jfif",
     },
     {
-      icon: "./musicPlayerPremium/imgs/imgProfile/meo4.jpg",
+      icon: "/musicPlayerPremium/imgs/imgProfile/meo4.jpg",
     },
     {
-      icon: "./musicPlayerPremium/imgs/imgProfile/meo5.jpg",
+      icon: "/musicPlayerPremium/imgs/imgProfile/meo5.jpg",
     },
     {
-      icon: "./musicPlayerPremium/imgs/imgProfile/meo6.jpg",
+      icon: "/musicPlayerPremium/imgs/imgProfile/meo6.jpg",
     },
     {
-      icon: "./musicPlayerPremium/imgs/imgProfile/meo7.jpg",
+      icon: "/musicPlayerPremium/imgs/imgProfile/meo7.jpg",
     },
   ],
   settings: [
     {
       name: "Khô Một Nắng",
       content: "Nhấp vào ảnh đại diện để cài đặt",
-      icon: "./musicPlayerPremium/imgs/imgProfile/meo.png",
+      icon: "/musicPlayerPremium/imgs/imgProfile/meo.png",
       iconIndex: 0,
       color: "#2cccff",
     },
