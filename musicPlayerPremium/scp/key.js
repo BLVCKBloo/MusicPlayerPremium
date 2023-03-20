@@ -271,6 +271,7 @@ const app = {
     <span></span>
     <span></span>
     <span></span>
+    <span></span>
   </div>
     <div
       class="thumb"
