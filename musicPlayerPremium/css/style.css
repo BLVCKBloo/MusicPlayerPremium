@@ -408,7 +408,7 @@ header h5 {
 }
 
 .control-center .control-btn .btn:hover {
-  color: var(--active-color);
+  color: var(--non-active);
   opacity: 0.7;
 }
 
