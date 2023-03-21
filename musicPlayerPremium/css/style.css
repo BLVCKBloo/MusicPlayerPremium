@@ -112,27 +112,27 @@ html {
 
 .player .dashboard .cd.active .cd-thumb.cd-left {
   border-radius: 10px 0 0 10px;
-  animation: slidetotheleft 0.3s ease-in forwards;
+  animation: slidetotheleft 0.3s ease-out forwards;
 }
 
 .player .dashboard .cd.active .cd-thumb.cd-right {
-  animation: slidetotheright 0.3s ease-in forwards;
+  animation: slidetotheright 0.3s ease-out forwards;
 }
 
 .player .dashboard .cd:not(.active) .cd-thumb.cd-left {
-  animation: notslidetotheleft 0.3s ease-in forwards;
+  animation: notslidetotheleft 0.3s ease-out forwards;
 }
 
 .player .dashboard .cd:not(.active) .cd-thumb.cd-right {
-  animation: notslidetotheright 0.3s ease-in forwards;
+  animation: notslidetotheright 0.3s ease-out forwards;
 }
 
 .player .dashboard .cd.slidein {
-  animation: slideinanimate 0.3s ease-in forwards;
+  animation: slideinanimate 0.3s ease-out forwards;
 }
 
 .player .dashboard .cd.slideout {
-  animation: slideoutanimate 0.2s linear forwards;
+  animation: slideoutanimate 0.2s ease-out forwards;
 }
 
 /* HEADER */
