@@ -62,6 +62,9 @@ const app = {
       color: " #6A5AF9",
     },
     {
+      color: " #eee",
+    },
+    {
       color: " #F62682",
     },
   ],
