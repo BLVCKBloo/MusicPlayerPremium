@@ -5,7 +5,8 @@
     <title>Music player</title>
     <link rel="stylesheet" href="./musicPlayerPremium/css/grid.css" />
     <link rel="stylesheet" href="./musicPlayerPremium/css/style.css" />
-
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
@@ -33,6 +34,13 @@
     />
   </head>
   <body>
+    <!-- <video autoplay muted loop id="myVideo">
+      <source
+        src="/musicPlayerPremium/imgs/rickandmorty.mp4"
+        type="video/mp4"
+      />
+    </video> -->
+
     <div class="user">
       <div class="user-left">
         <span class="user-left-name"></span>
@@ -84,17 +92,17 @@
           ></div>
         </div>
         <header>
-          <h4>Now playing:</h4>
+          <h4>...</h4>
           <h2>String 57th & 9th</h2>
           <h5>String 57th & 9th</h5>
         </header>
+
         <!-- Control -->
         <audio id="audio" src=""></audio>
       </div>
       <div class="control">
         <div class="control-center">
           <div class="progress-primary">
-            <span class="time-current time">00:00</span>
             <input
               id="progress"
               class="progress"
@@ -105,7 +113,10 @@
               max="100"
             />
             <i class="icon acton-plaiy ic-gif-playing-white"></i>
+
+            <span class="time-current time">00:00</span>
             <span class="time-duration time">00:00</span>
+            <span class="timeline">00:00/00:00</span>
           </div>
           <div class="control-btn">
             <div class="btn btn-repeat">
@@ -125,11 +136,6 @@
               <i class="fas fa-random"></i>
             </div>
           </div>
-        </div>
-        <div class="autonext active uns">
-          <!--active defauld-->
-          <span class="autonext-span">Tự động chuyển bài: Bật</span>
-          <div class="autonext-btn"></div>
         </div>
         <div class="volume strong">
           <ion-icon class="mute" name="volume-mute-outline"></ion-icon>
@@ -157,7 +163,7 @@
             min="0"
             max="100"
           />
-          <span class="volume-number">100%</span>
+          <span style="display: none" class="volume-number">100%</span>
         </div>
       </div>
 
@@ -181,6 +187,11 @@
         <ion-icon name="list-outline"></ion-icon>
       </div>
     </div>
+    <div class="autonext active uns">
+      <span class="autonext-span">Tự động chuyển bài: Bật</span>
+      <div class="autonext-btn"></div>
+    </div>
+    <!-- <div id="waveform"></div> -->
   </body>
   <script src="./musicPlayerPremium/scp/key.js"></script>
 </html>
