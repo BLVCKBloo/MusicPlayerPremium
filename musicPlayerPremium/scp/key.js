@@ -1,7 +1,6 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const root = document.querySelector(":root");
-
 const heading = $("header h2"),
   headingSinger = $("header h5"),
   cdThumb = $(".cd-right"),
@@ -50,10 +49,16 @@ const app = {
       color: "#2cccff",
     },
     {
+      color: "#ffe700",
+    },
+    {
       color: "#FF6651",
     },
-        {
-      color: "#ffe700",
+    {
+      color: "#eee",
+    },
+    {
+      color: "#F7CAC9",
     },
     {
       color: "#20E3B2",
@@ -62,10 +67,10 @@ const app = {
       color: " #6A5AF9",
     },
     {
-      color: " #eee",
+      color: " #F62682",
     },
     {
-      color: " #F62682",
+      addNewColor: true,
     },
   ],
   favLists: [],
@@ -95,7 +100,7 @@ const app = {
   ],
   settings: [
     {
-      name: "Khô Một Nắng",
+      name: "Hello!",
       content: "Nhấp vào ảnh đại diện để cài đặt",
       icon: "./musicPlayerPremium/imgs/imgProfile/meo.png",
       iconIndex: 0,
@@ -241,15 +246,20 @@ const app = {
     });
     $(".tabs-span").innerText = `${this.currentIndex + 1}/${this.songs.length}`;
     const renderColor = this.colors.map((cl, index) => {
+      const getAddCl = cl.addNewColor;
       return `
-          <input type="radio" name="primary-colorr" data-index="${index}" id="color${index}" ${
-        index == 0 ? "checked" : ""
-      } />
+          <input type="radio" name="${
+            getAddCl ? "addColor" : "primary-colorr"
+          }" data-index="${index}" id="${
+        getAddCl ? "add-color" : `color${index}`
+      }" ${getAddCl ? "" : `${index == 0 ? "checked" : ""}`} />
           <label
-            for="color${index}"
+            for="${getAddCl ? "add-color" : `color${index}`}"
             class="colorchange-cont-btn"
-            style="background-color: ${cl.color}"
-          ></label>`;
+            style="background-color: ${getAddCl ? "#eee" : `${cl.color}`};"
+          ></label>
+
+          `;
     });
     const iconRender = this.icons.map((icn, index) => {
       return `
@@ -263,11 +273,18 @@ const app = {
 </label>
 `;
     });
+    // window.screen.availWidth
     const htmls = this.songs.map((song, index) => {
       return `
     <div class="song ${song.name.length >= 20 ? "scrolltext" : ""}  ${
         index === this.currentIndex ? "active" : ""
       }" data-index="${index}">
+    <div
+      class="thumb"
+      style="
+        background-image: url('${song.image}');
+      "
+    >
     <div class="loader">
     <span></span>
     <span></span>
@@ -275,13 +292,7 @@ const app = {
     <span></span>
     <span></span>
     <span></span>
-  </div>
-    <div
-      class="thumb"
-      style="
-        background-image: url('${song.image}');
-      "
-    ></div>
+  </div></div>
     <div class="body">
       <h3 class="title">${song.name}</h3>
       <p class="author">${song.singer}</p>
@@ -402,29 +413,19 @@ const app = {
   },
   handleEvent: function () {
     this.render();
-    // const tittle = $$(".title");
-    // tittle.forEach((btn, inx) => {
-    //   console.log(btn.innerText.length);
-    //   // if (inx == 11) {
-    //   //   console.log(btn.clientWidth);
-    //   // }
-    // });
-    // const setIcon = $$(".set-icon");
     const _this = this;
-
     cdWidth = cd.offsetWidth;
-    const getSong = $$(".song");
     const cdThumbAnimated = cdThumb.animate([{ transform: "rotate(360deg)" }], {
       duration: 15000,
       iterations: Infinity,
     });
     cdThumbAnimated.pause();
-    document.onscroll = function () {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop,
-        newCdWidth = cdWidth - scrollTop;
-      cd.style.width = newCdWidth > 0 ? newCdWidth + "px" : 0;
-      cd.style.opacity = newCdWidth / cdWidth;
-    };
+    // document.onscroll = function () {
+    //   const scrollTop = window.scrollY || document.documentElement.scrollTop,
+    //     newCdWidth = cdWidth - scrollTop;
+    //   cd.style.width = newCdWidth > 0 ? newCdWidth + "px" : 0;
+    //   cd.style.opacity = newCdWidth / cdWidth;
+    // };
     playBtn.onclick = function () {
       _this.isPlaying ? audio.pause() : audio.play();
     };
@@ -496,6 +497,9 @@ const app = {
       if (duration_seconds < 10) {
         duration_seconds = `0${duration_seconds}`;
       }
+      $(".timeline").innerText = `${current_minutes}:${current_seconds}/${
+        isNaN(duration_minutes) ? "00" : duration_minutes
+      }:${isNaN(duration_seconds) ? "00" : duration_seconds}`;
       timeCurrent.innerText = `${current_minutes}:${current_seconds}`;
       timeDuration.innerText = `${
         isNaN(duration_minutes) ? "00" : duration_minutes
@@ -583,7 +587,7 @@ const app = {
           });
         }
       });
-      console.log(_this.settings);
+
       $(".user-icon").classList.remove("active");
       _this.render();
     };
@@ -726,7 +730,7 @@ const app = {
           });
           // favSong.onclick = (e) => {
           //   _this.songs.map((song, index) => {
-          //     console.log(song, index);
+
           //   });
           // };
         }
@@ -805,6 +809,7 @@ const app = {
       }
     };
   },
+
   loadCurrentSong: function () {
     heading.textContent = this.currentSong.name;
     headingSinger.textContent = this.currentSong.singer;
