@@ -99,7 +99,7 @@ const app = {
       content: "Nhấp vào ảnh đại diện để cài đặt",
       icon: "./musicPlayerPremium/imgs/imgProfile/meo.png",
       iconIndex: 0,
-      color: "#2cccff",
+      color: "#eee",
     },
   ],
   songs: [
