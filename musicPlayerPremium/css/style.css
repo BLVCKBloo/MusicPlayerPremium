@@ -112,23 +112,23 @@ html {
 
 .player .dashboard .cd.active .cd-thumb.cd-left {
   border-radius: 10px 0 0 10px;
-  animation: slidetotheleft 0.3s ease forwards;
+  animation: slidetotheleft 0.3s ease-in forwards;
 }
 
 .player .dashboard .cd.active .cd-thumb.cd-right {
-  animation: slidetotheright 0.3s ease forwards;
+  animation: slidetotheright 0.3s ease-in forwards;
 }
 
 .player .dashboard .cd:not(.active) .cd-thumb.cd-left {
-  animation: notslidetotheleft 0.3s ease forwards;
+  animation: notslidetotheleft 0.3s ease-in forwards;
 }
 
 .player .dashboard .cd:not(.active) .cd-thumb.cd-right {
-  animation: notslidetotheright 0.3s ease forwards;
+  animation: notslidetotheright 0.3s ease-in forwards;
 }
 
 .player .dashboard .cd.slidein {
-  animation: slideinanimate 0.3s linear forwards;
+  animation: slideinanimate 0.3s ease-in forwards;
 }
 
 .player .dashboard .cd.slideout {
