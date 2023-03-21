@@ -3,6 +3,7 @@
   --primary-background-color: rgba(0, 0, 0, 0.15);
   --non-active: crimson;
   --active-color: navy;
+  --scroll-text-time: 6s;
   --text-color: #333;
 }
 
@@ -22,6 +23,7 @@ li {
 body {
   background-image: url(../imgs/imgLogo/Neon-Lo-Fi-Background-HD.jpg);
   background-size: cover;
+  background-color: #170f23;
   width: 100vw;
 }
 
@@ -112,19 +114,19 @@ html {
 
 .player .dashboard .cd.active .cd-thumb.cd-left {
   border-radius: 10px 0 0 10px;
-  animation: slidetotheleft 0.3s ease-out forwards;
+  animation: slidetotheleft 0.3s ease-in-out forwards;
 }
 
 .player .dashboard .cd.active .cd-thumb.cd-right {
-  animation: slidetotheright 0.3s ease-out forwards;
+  animation: slidetotheright 0.3s ease-in-out forwards;
 }
 
 .player .dashboard .cd:not(.active) .cd-thumb.cd-left {
-  animation: notslidetotheleft 0.3s ease-out forwards;
+  animation: notslidetotheleft 0.3s ease-in-out forwards;
 }
 
 .player .dashboard .cd:not(.active) .cd-thumb.cd-right {
-  animation: notslidetotheright 0.3s ease-out forwards;
+  animation: notslidetotheright 0.3s ease-in-out forwards;
 }
 
 .player .dashboard .cd.slidein {
@@ -132,7 +134,7 @@ html {
 }
 
 .player .dashboard .cd.slideout {
-  animation: slideoutanimate 0.2s ease-out forwards;
+  animation: slideoutanimate 0.2s ease-in forwards;
 }
 
 /* HEADER */
@@ -377,7 +379,7 @@ header h5 {
   justify-content: space-around;
   position: fixed;
   height: 90px;
-  background-color: #170f23;
+  background-color: rgba(23, 15, 35, 0.9);
   left: 0;
   right: 0;
   bottom: 0;
@@ -390,21 +392,22 @@ header h5 {
   align-items: center;
   justify-content: space-around;
   position: relative;
-  width: 300px;
+  width: 100%;
 }
 
 .control-center .control-btn {
   transform: translateY(15px);
   width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
 }
 
 .control-center .control-btn .btn {
   color: #eee;
   padding: 18px;
   font-size: 15px;
+  margin: 15px;
 }
 
 .control-center .control-btn .btn:hover {
@@ -446,10 +449,14 @@ header h5 {
 .control-center .progress-primary {
   position: absolute;
   top: 15px;
-  width: 600px;
+  width: calc(100% - 200px);
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.control-center .progress-primary .timeline {
+  display: none;
 }
 
 .control-center .progress-primary .time {
@@ -469,6 +476,7 @@ header h5 {
 .control-center .progress-primary .progress {
   width: 100%;
   -webkit-appearance: none;
+  border-radius: 25px;
   height: 6px;
   background: #eeeeee8e;
   outline: none;
@@ -493,17 +501,17 @@ header h5 {
 
 .control .volume {
   position: absolute;
-  right: 30px;
+  left: 35px;
   display: flex;
   align-items: center;
   color: #eee;
-  top: 30px;
+  top: 40px;
 }
 
 .control .volume-icon,
 .control .volume .mute {
   display: none;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .control .volume-number, .control .volume-icon,
@@ -540,11 +548,12 @@ header h5 {
 }
 
 .player-list {
-  position: absolute;
-  left: -400px;
-  width: 30%;
+  position: fixed;
+  left: 0;
+  width: 400px;
   top: 15px;
-  height: 90%;
+  bottom: -90px;
+  transform: translateX(10px);
 }
 
 .player-list .tabs {
@@ -602,7 +611,7 @@ header h5 {
   padding: 12px;
   border-radius: 5px;
   margin-top: 40px;
-  overflow-y: scroll;
+  overflow-y: auto;
   opacity: 0;
   box-shadow: 0px 4px 50px 5px;
   background-color: var(--primary-background-color);
@@ -713,12 +722,14 @@ header h5 {
 
 .player-list .tabs .tab .song .author {
   font-size: 12px;
+  opacity: 0.8;
   color: #fff;
 }
 
 .player-list .tabs .tab .song .title-span {
   display: none;
-  color: var(--active-color);
+  color: var(--non-active);
+  text-shadow: 0 0 4px #ff0000;
   font-size: 12px;
   font-weight: 500;
 }
@@ -875,7 +886,7 @@ header h5 {
 
 .player-list .tabs .tab .song.scrolltext:hover .title {
   transform: translateX(30%);
-  animation: my-animation 6s linear infinite;
+  animation: slide-text-for-pc var(--scroll-text-time) linear infinite;
 }
 
 .player-list .tabs .tab .song.playing .loader {
@@ -987,9 +998,8 @@ header h5 {
   justify-content: flex-end;
   align-items: center;
   border-radius: 5px;
-  left: 30px;
-  bottom: 30px;
-  height: 30px;
+  right: 10px;
+  bottom: 10px;
   z-index: 2;
 }
 
@@ -1200,12 +1210,44 @@ header h5 {
 
 /* for Chrome */
 
-@keyframes my-animation {
+@keyframes slide-text-for-pc {
   0% {
     transform: translateX(0%);
   }
   50% {
     transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+  .player-list {
+    width: 300px;
+  }
+  :root {
+    --scroll-text-time: 15s;
+  }
+  @keyframes slide-text-for-pc {
+    0% {
+      transform: translateX(0%);
+    }
+    50% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+}
+
+@keyframes slide-text-for-mb {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-130%);
   }
   100% {
     transform: translateX(0%);
