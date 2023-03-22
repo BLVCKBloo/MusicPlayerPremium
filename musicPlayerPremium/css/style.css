@@ -1241,7 +1241,25 @@ header h5 {
     }
   }
 }
-
+@media (min-width: 360px) and (max-width: 720px) {
+  .player-list {
+    width: 250px;
+  }
+  :root {
+    --scroll-text-time: 15s;
+  }
+  @keyframes slide-text-for-pc {
+    0% {
+      transform: translateX(0%);
+    }
+    50% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+}
 @keyframes slide-text-for-mb {
   0% {
     transform: translateX(0%);
