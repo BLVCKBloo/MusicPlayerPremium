@@ -32,6 +32,14 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  min-height: 100%;
+}
+
 .player {
   position: relative;
   max-width: 420px;
@@ -373,6 +381,62 @@ header h5 {
   }
 }
 
+.speed {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 25px;
+  width: 50px;
+  border-radius: 5px 0 0 5px;
+  padding: 0 5px;
+  background-color: rgba(238, 238, 238, 0.15);
+  color: #eee;
+}
+
+.speed-icon {
+  font-size: 25px;
+}
+
+.speed-value {
+  color: #eee;
+}
+
+.speed-list {
+  position: absolute;
+  bottom: -5px;
+  display: flex;
+  flex-direction: column;
+  color: #eee;
+  background-color: rgba(238, 238, 238, 0.15);
+  border-radius: 5px;
+  left: 50px;
+  overflow: hidden;
+  width: 60px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.speed-list input {
+  display: none;
+}
+
+.speed-list input[type="radio"]:checked + label {
+  background-color: var(--primary-color);
+  color: var(--active-color);
+}
+
+.speed-list label {
+  margin: 2px 0;
+  padding: 0 5px;
+  width: 100%;
+}
+
+.speed-list label:hover {
+  background-color: var(--primary-color);
+  color: var(--active-color);
+}
+
 .control {
   display: flex;
   align-items: center;
@@ -416,7 +480,7 @@ header h5 {
 }
 
 .control-center .control-btn .btn.active {
-  color: var(--primary-color);
+  color: #20e3b2;
   animation: rotate360degRight 0.5s ease forwards;
   animation-delay: 0.2s;
 }
@@ -493,7 +557,7 @@ header h5 {
   background-color: #eee;
   box-shadow: -20rem 5rem 0 20rem var(--primary-color);
   cursor: pointer;
-  transition: width 0.2s;
+  transition: width 0.1s;
 }
 
 .control-center .progress-primary .progress:hover::-webkit-slider-thumb {
@@ -550,11 +614,10 @@ header h5 {
 
 .player-list {
   position: fixed;
-  left: 0;
-  width: 400px;
+  left: 30px;
+  width: 375px;
   top: 15px;
   bottom: -90px;
-  transform: translateX(10px);
 }
 
 .player-list .tabs {
@@ -919,40 +982,36 @@ header h5 {
   height: 40px;
   border-radius: 3px;
   font-size: 30px;
-  color: #eee;
-  opacity: 0.7;
+  color: var(--primary-color);
   transition: opacity 0.2s ease;
 }
 
-.player-list .list-btn.active {
-  color: var(--primary-color);
-  animation: rotate90degRight 0.3s ease forwards;
-  opacity: 1;
+.player-list .list-btn-span {
+  position: absolute;
+  bottom: -30px;
+  font-size: 17px;
+  left: 10px;
+  font-weight: bold;
+  width: 160px;
+  display: flex;
+  align-items: center;
+  animation: lighttext 2s ease infinite;
+  transition: color 0.2 ease;
+  text-shadow: 0px 1px 30px #eee;
 }
 
-.player-list .list-btn:not(.active) {
-  animation: rotate90degLeft 0.3s ease forwards;
+.player-list .list-btn-span-icon {
+  font-size: 20px;
+  margin-right: 3px;
 }
 
-.player-list .list-btn:hover {
-  opacity: 0.9;
-}
-
-.player-list.show {
-  animation: slideToRight 0.5s ease forwards;
+.player-list .list-btn-span.disable {
+  display: none;
 }
 
 .player-list.show .playlist,
 .player-list.show .autonext {
   opacity: 1;
-}
-
-.player-list.hide .playlist {
-  opacity: 0.2;
-}
-
-.player-list.hide {
-  animation: slideToLeft 0.5s ease forwards;
 }
 
 .colorchange {
@@ -1242,25 +1301,7 @@ header h5 {
     }
   }
 }
-@media (min-width: 360px) and (max-width: 720px) {
-  .player-list {
-    width: 250px;
-  }
-  :root {
-    --scroll-text-time: 15s;
-  }
-  @keyframes slide-text-for-pc {
-    0% {
-      transform: translateX(0%);
-    }
-    50% {
-      transform: translateX(-200%);
-    }
-    100% {
-      transform: translateX(0%);
-    }
-  }
-}
+
 @keyframes slide-text-for-mb {
   0% {
     transform: translateX(0%);
@@ -1270,6 +1311,22 @@ header h5 {
   }
   100% {
     transform: translateX(0%);
+  }
+}
+
+@keyframes lighttext {
+  0%,
+  100% {
+    color: #eee;
+  }
+  25% {
+    color: #2cccff;
+  }
+  50% {
+    color: #eee;
+  }
+  75% {
+    color: #2cccff;
   }
 }
 /*# sourceMappingURL=style.css.map */
