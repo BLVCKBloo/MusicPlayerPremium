@@ -108,7 +108,7 @@
               class="progress"
               type="range"
               value="0"
-              step="1"
+              step="0.01"
               min="0"
               max="100"
             />
@@ -135,6 +135,77 @@
             <div class="btn btn-random">
               <i class="fas fa-random"></i>
             </div>
+            <!-- <div class="speed">
+              <ion-icon class="speed-icon" name="aperture-outline"></ion-icon>
+              <div class="speed-value">x1</div>
+              <div class="speed-list">
+                <input
+                  type="radio"
+                  class="speed-input"
+                  name="speed"
+                  id="speed-0.25"
+                  value="0.25"
+                />
+                <label for="speed-0.25" class="speed-label">x0.25 </label>
+                <input
+                  type="radio"
+                  class="speed-input"
+                  name="speed"
+                  id="speed-0.5"
+                  value="0.5"
+                />
+                <label for="speed-0.5" class="speed-label">x0.5 </label>
+                <input
+                  type="radio"
+                  class="speed-input"
+                  name="speed"
+                  id="speed-0.75"
+                  value="0.75"
+                />
+                <label for="speed-0.75" class="speed-label">x0.75 </label>
+                <input
+                  type="radio"
+                  class="speed-input"
+                  name="speed"
+                  id="speed-1"
+                  value="1"
+                  checked
+                />
+                <label for="speed-1" class="speed-label">x1 </label>
+                <input
+                  type="radio"
+                  class="speed-input"
+                  name="speed"
+                  id="speed-1.25"
+                  value="1.25"
+                />
+                <label for="speed-1.25" class="speed-label">x1.25 </label>
+                <input
+                  type="radio"
+                  class="speed-input"
+                  name="speed"
+                  id="speed-1.5"
+                  value="1.5"
+                />
+                <label for="speed-1.5" class="speed-label">x1.5 </label>
+                <input
+                  type="radio"
+                  class="speed-input"
+                  name="speed"
+                  id="speed-1.75"
+                  value="1.75"
+                />
+                <label for="speed-1.75" class="speed-label">x1.75 </label>
+                <input
+                  type="radio"
+                  class="speed-input"
+                  name="speed"
+                  id="speed-2"
+                  value="2"
+                />
+                <label for="speed-2" class="speed-label">x2 </label>
+              </div>
+            </div> -->
           </div>
         </div>
         <div class="volume strong">
@@ -185,10 +256,17 @@
       </div>
       <div class="list-btn">
         <ion-icon name="list-outline"></ion-icon>
+        <span class="list-btn-span"
+          ><ion-icon
+            class="list-btn-span-icon"
+            name="arrow-up-circle-outline"
+          ></ion-icon>
+          Thử kéo và thả</span
+        >
       </div>
     </div>
     <div class="autonext active uns">
-      <span class="autonext-span">Tự động chuyển bài: Bật</span>
+      <span class="autonext-span">Tự động chuyển bài:</span>
       <div class="autonext-btn"></div>
     </div>
     <!-- <div id="waveform"></div> -->
