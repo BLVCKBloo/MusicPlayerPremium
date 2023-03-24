@@ -114,6 +114,14 @@ const app = {
   ],
   songs: [
     {
+      name: "Bên Trên Tầng Lầu",
+      singer: "Tăng Duy Tân",
+      path: `${linkSong}/bentrentanglau.mp3`,
+      image: `${imgThumb}/bentrentanglau.jfif`,
+      favorite: false,
+      disableSong: false,
+    },
+    {
       name: "Waiting For You",
       singer: "MONO",
       path: `${linkSong}/waitingforyou.mp3`,
