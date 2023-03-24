@@ -28,7 +28,9 @@ const heading = $("header h2"),
   timeDuration = $(".time-duration"),
   imgThumb = "./musicPlayerPremium/imgs/imgthumb",
   getPrimaryColor = $(".primary-color"),
+  getSpeedBtn = $(".speed"),
   autoNextSongBtn = $(".autonext"),
+  getSpeedInput = $$(".speed-input"),
   linkSong = "./musicPlayerPremium/music",
   getIconUser = $(".user-icon"),
   userSetting = $(".user-setting"),
@@ -44,6 +46,8 @@ const app = {
   isOpenOption: false,
   iconActive: false,
   isAutoNextSong: true,
+  speedSongBtn: false,
+  onDrag: true,
   colors: [
     {
       color: "#2cccff",
@@ -105,6 +109,7 @@ const app = {
       icon: "./musicPlayerPremium/imgs/imgProfile/meo.png",
       iconIndex: 0,
       color: "#eee",
+      speedSong: 1,
     },
   ],
   songs: [
@@ -239,6 +244,13 @@ const app = {
   ],
   render: function () {
     this.settings.map((setting, index) => {
+      getSpeedInput.forEach((btn, inx) => {
+        btn.value == setting.speedSong
+          ? (btn.checked = true)
+          : (btn.checked = false);
+      });
+      $(".speed-value").innerText = `x${setting.speedSong}`;
+      audio.playbackRate = setting.speedSong;
       $(".user-left-name").innerText = setting.name;
       $(".user-left-content").innerText = setting.content;
       $(".user-icon").style.backgroundImage = `url(${setting.icon})`;
@@ -429,7 +441,17 @@ const app = {
     playBtn.onclick = function () {
       _this.isPlaying ? audio.pause() : audio.play();
     };
-
+    getSpeedInput.forEach((btn, inx) => {
+      btn.onclick = (e) => {
+        _this.speedSongBtn = true;
+        getSpeedBtn.classList.remove("active");
+        _this.settings.map((setting, inx) => {
+          setting.speedSong = btn.value;
+          console.log(setting.speedSong);
+        });
+        _this.render();
+      };
+    });
     audio.onplay = function () {
       _this.isPlaying = true;
       cd.classList.add("active");
@@ -531,7 +553,6 @@ const app = {
       }
       audio.volume = seekVolume;
     };
-
     progress.oninput = function (e) {
       const seekTime = (audio.duration / 100) * e.target.value;
       let current_minutes = Math.floor(seekTime / 60);
@@ -559,6 +580,7 @@ const app = {
       }, 700);
     };
     // -----------------------------------------=-=-=-=-=-=-=-=
+
     $(".user-setting-save").onclick = (e) => {
       var iconCont = $(".icon-container");
       var colorCont = $(".colorchange-cont");
@@ -610,6 +632,10 @@ const app = {
         }
       }, 700);
     };
+    getSpeedBtn.onclick = (e) => {
+      _this.speedSongBtn = !_this.speedSongBtn;
+      getSpeedBtn.classList.toggle("active", _this.speedSongBtn);
+    };
     repeatBtn.onclick = function () {
       _this.isRepeat = !_this.isRepeat;
       repeatBtn.classList.toggle("active", _this.isRepeat);
@@ -656,8 +682,16 @@ const app = {
         optionControl(e);
       };
     });
-    dragElement(listBtn);
 
+    playerList.onclick = (e) => {
+      const playListNode = e.target.closest(".searchbar-input");
+      if (playListNode) {
+        _this.onDrag = false;
+      } else {
+        _this.onDrag = true;
+      }
+    };
+    _this.onDrag ? dragElement(listBtn) : "";
     function dragElement(elmnt) {
       const getParentElement = elmnt.parentElement;
 
