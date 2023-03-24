@@ -119,6 +119,34 @@
             <span class="timeline">00:00/00:00</span>
           </div>
           <div class="control-btn">
+            <div class="volume strong">
+              <ion-icon class="mute" name="volume-mute-outline"></ion-icon>
+              <ion-icon
+                class="volume-icon vol-off"
+                name="volume-off-outline"
+              ></ion-icon>
+              <ion-icon
+                class="volume-icon vol-weak"
+                name="volume-low-outline"
+              ></ion-icon>
+              <ion-icon
+                class="volume-icon vol-medium"
+                name="volume-medium-outline"
+              ></ion-icon>
+              <ion-icon
+                class="volume-icon vol-strong"
+                name="volume-high-outline"
+              ></ion-icon>
+              <input
+                class="volume-bar"
+                type="range"
+                value="100"
+                step="1"
+                min="0"
+                max="100"
+              />
+              <span style="display: none" class="volume-number">100%</span>
+            </div>
             <div class="btn btn-repeat">
               <i class="fas fa-redo"></i>
             </div>
@@ -135,8 +163,9 @@
             <div class="btn btn-random">
               <i class="fas fa-random"></i>
             </div>
-            <!-- <div class="speed">
+            <div class="speed">
               <ion-icon class="speed-icon" name="aperture-outline"></ion-icon>
+
               <div class="speed-value">x1</div>
               <div class="speed-list">
                 <input
@@ -205,36 +234,8 @@
                 />
                 <label for="speed-2" class="speed-label">x2 </label>
               </div>
-            </div> -->
+            </div>
           </div>
-        </div>
-        <div class="volume strong">
-          <ion-icon class="mute" name="volume-mute-outline"></ion-icon>
-          <ion-icon
-            class="volume-icon vol-off"
-            name="volume-off-outline"
-          ></ion-icon>
-          <ion-icon
-            class="volume-icon vol-weak"
-            name="volume-low-outline"
-          ></ion-icon>
-          <ion-icon
-            class="volume-icon vol-medium"
-            name="volume-medium-outline"
-          ></ion-icon>
-          <ion-icon
-            class="volume-icon vol-strong"
-            name="volume-high-outline"
-          ></ion-icon>
-          <input
-            class="volume-bar"
-            type="range"
-            value="100"
-            step="1"
-            min="0"
-            max="100"
-          />
-          <span style="display: none" class="volume-number">100%</span>
         </div>
       </div>
 
@@ -244,6 +245,7 @@
     <div class="player-list show mb">
       <div class="tabs">
         <span class="tabs-span">20/20</span>
+
         <input class="tab-btn" type="radio" name="tabs" id="tabone" checked />
         <label class="tab-label" for="tabone">Mục chính</label>
         <div id="playlists" class="playlist tab"></div>
@@ -253,6 +255,15 @@
         <input class="tab-btn" type="radio" name="tabs" id="tabthree" />
         <label class="tab-label" for="tabthree">Đã xóa</label>
         <div id="dellist" class="playlist tab"></div>
+      </div>
+      <div class="searchbar">
+        <input
+          type="text"
+          placeholder="Tìm Bài Hát (Không khả dụng)"
+          class="searchbar-input"
+        />
+
+        <ion-icon class="searchbar-icon" name="search-outline"></ion-icon>
       </div>
       <div class="list-btn">
         <ion-icon name="list-outline"></ion-icon>
