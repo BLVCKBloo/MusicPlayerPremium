@@ -382,35 +382,37 @@ header h5 {
 }
 
 .speed {
-  position: relative;
+  position: absolute;
+  transform: translateX(230px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 25px;
-  width: 50px;
+  width: 70px;
   border-radius: 5px 0 0 5px;
   padding: 0 5px;
-  background-color: rgba(238, 238, 238, 0.15);
   color: #eee;
 }
 
 .speed-icon {
   font-size: 25px;
+  background: url(/musicPlayerPremium/imgs/imgProfile/4970864-200.png);
 }
 
 .speed-value {
   color: #eee;
+  font-size: 15px;
 }
 
 .speed-list {
+  display: none;
   position: absolute;
   bottom: -5px;
-  display: flex;
   flex-direction: column;
   color: #eee;
   background-color: rgba(238, 238, 238, 0.15);
   border-radius: 5px;
-  left: 50px;
+  left: 70px;
   overflow: hidden;
   width: 60px;
   font-size: 15px;
@@ -428,13 +430,26 @@ header h5 {
 
 .speed-list label {
   margin: 2px 0;
-  padding: 0 5px;
+  padding: 0 5px 0 15px;
   width: 100%;
 }
 
 .speed-list label:hover {
   background-color: var(--primary-color);
   color: var(--active-color);
+}
+
+.speed.active {
+  background-color: rgba(238, 238, 238, 0.15);
+}
+
+.speed.active .speed-list {
+  display: flex;
+}
+
+.speed.active .speed-value,
+.speed.active .speed-icon {
+  color: #20e3b2;
 }
 
 .control {
@@ -465,6 +480,53 @@ header h5 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.control-center .control-btn .volume {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: #eee;
+  transform: translateX(-280px);
+}
+
+.control-center .control-btn .volume-icon,
+.control-center .control-btn .volume .mute {
+  display: none;
+  font-size: 17px;
+}
+
+.control-center .control-btn .volume-number, .control-center .control-btn .volume-icon,
+.control-center .control-btn .volume .mute {
+  margin: 0 10px;
+}
+
+.control-center .control-btn .volume-bar {
+  -webkit-appearance: none;
+  height: 6px;
+  background: #eeeeee8e;
+  outline: none;
+  opacity: 0.8;
+  overflow: hidden;
+  transition: opacity 0.2s, height 0.2s;
+}
+
+.control-center .control-btn .volume-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 3px;
+  height: 1rem;
+  background-color: #eee;
+  box-shadow: -20rem 5rem 0 20rem var(--primary-color);
+  cursor: pointer;
+  transition: width 0.2s;
+}
+
+.control-center .control-btn .volume.mute .mute,
+.control-center .control-btn .volume.weak .vol-weak,
+.control-center .control-btn .volume.medium .vol-medium,
+.control-center .control-btn .volume.strong .vol-strong,
+.control-center .control-btn .volume.off .vol-off {
+  display: block;
 }
 
 .control-center .control-btn .btn {
@@ -564,60 +626,43 @@ header h5 {
   width: 5px;
 }
 
-.control .volume {
-  position: absolute;
-  left: 35px;
-  display: flex;
-  align-items: center;
-  color: #eee;
-  top: 40px;
-}
-
-.control .volume-icon,
-.control .volume .mute {
-  display: none;
-  font-size: 17px;
-}
-
-.control .volume-number, .control .volume-icon,
-.control .volume .mute {
-  margin: 0 10px;
-}
-
-.control .volume-bar {
-  -webkit-appearance: none;
-  height: 6px;
-  background: #eeeeee8e;
-  outline: none;
-  opacity: 0.8;
-  overflow: hidden;
-  transition: opacity 0.2s, height 0.2s;
-}
-
-.control .volume-bar::-webkit-slider-thumb {
-  appearance: none;
-  width: 3px;
-  height: 1rem;
-  background-color: #eee;
-  box-shadow: -20rem 5rem 0 20rem var(--primary-color);
-  cursor: pointer;
-  transition: width 0.2s;
-}
-
-.control .volume.mute .mute,
-.control .volume.weak .vol-weak,
-.control .volume.medium .vol-medium,
-.control .volume.strong .vol-strong,
-.control .volume.off .vol-off {
-  display: block;
-}
-
 .player-list {
   position: fixed;
   left: 30px;
   width: 375px;
   top: 15px;
   bottom: -90px;
+}
+
+.player-list .searchbar {
+  padding: 5px;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.player-list .searchbar-input {
+  border: none;
+  outline: none;
+  background-color: rgba(238, 238, 238, 0.4);
+  color: #20e3b2d1;
+  padding: 0 10px;
+  height: 90%;
+  border-radius: 3px;
+  width: 90%;
+}
+
+.player-list .searchbar-input::placeholder {
+  color: #eee;
+  opacity: 0.9;
+}
+
+.player-list .searchbar-icon {
+  color: #eee;
+  font-weight: 700;
 }
 
 .player-list .tabs {
@@ -674,7 +719,7 @@ header h5 {
   width: 100%;
   padding: 12px;
   border-radius: 5px;
-  margin-top: 40px;
+  margin-top: 70px;
   overflow-y: auto;
   opacity: 0;
   box-shadow: 0px 4px 50px 5px;
