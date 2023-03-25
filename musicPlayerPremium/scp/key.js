@@ -130,6 +130,14 @@ const app = {
       disableSong: false,
     },
     {
+      name: "Mời Trầu",
+      singer: "Masew ft. Tuấn Cry",
+      path: `${linkSong}/moitrau.mp3`,
+      image: `${imgThumb}/moitrau.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
+    {
       name: "Là Anh",
       singer: "Phạm Lịch",
       path: `${linkSong}/laanh.mp3`,
