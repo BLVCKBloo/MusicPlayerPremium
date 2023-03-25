@@ -130,6 +130,14 @@ const app = {
       disableSong: false,
     },
     {
+      name: "Là Anh",
+      singer: "Phạm Lịch",
+      path: `${linkSong}/laanh.mp3`,
+      image: `${imgThumb}/laanh.jpg`,
+      favorite: false,
+      disableSong: false,
+    },
+    {
       name: "Chuyện Đôi Ta",
       singer: "Emcee L (Da LAB) ft Muộii ",
       path: `${linkSong}/chuyendoita.mp3`,
